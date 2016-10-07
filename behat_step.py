@@ -6,7 +6,7 @@ from os import path, walk
 from . import case_parse
 
 BEHAT_KEYWORDS = ['Given', 'When', 'Then', 'And', 'But']
-TEST_FOLDER = 'tests/acceptance'
+TEST_FOLDER = 'tests/acceptance/bootstrap'
 DEBUG = True
 IGNORED_FILES = ['.DS_Store']
 
