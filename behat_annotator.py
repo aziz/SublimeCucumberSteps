@@ -33,8 +33,8 @@ class BehatStepAnnotator(sublime_plugin.ViewEventListener):
         line_range = view.line(cursor)
         line_content = view.substr(line_range).strip()
         root_folder = window.extract_variables()['folder']
-        css = sublime.load_resource("Packages/BehatStep/html/ui.css")
-        html = sublime.load_resource("Packages/BehatStep/html/ui.html")
+        css = sublime.load_resource("Packages/CucumberSteps/html/ui.css")
+        html = sublime.load_resource("Packages/CucumberSteps/html/ui.html")
 
         if self.is_valid_step(line_content):
             matches = behat_step.CucumberStepFinder(line_content, root_folder).matches

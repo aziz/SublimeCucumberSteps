@@ -1,3 +1,5 @@
+# Borrowed from https://github.com/jdc0589/CaseConversion
+
 import re
 import sys
 

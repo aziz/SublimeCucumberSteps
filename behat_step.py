@@ -5,10 +5,10 @@ import codecs
 from os import path, walk
 from . import case_parse
 
-BEHAT_KEYWORDS = ["Given", "When", "Then", "And", "But"]
+BEHAT_KEYWORDS = ['Given', 'When', 'Then', 'And', 'But']
 TEST_FOLDER = 'tests/acceptance'
 DEBUG = True
-
+IGNORED_FILES = ['.DS_Store']
 
 class CucumberStepFinder():
     def __init__(self, line, root):
@@ -48,6 +48,12 @@ class CucumberStepFinder():
         matches = []
         for root, dirs, files in walk(search_path):
             for f in files:
+                ignored = False
+                for ignore_file in IGNORED_FILES:
+                    if f == ignore_file:
+                        ignored = True
+                if ignored:
+                    continue
                 index = 0
                 file_path = path.join(root, f)
                 for line in codecs.open(file_path, 'r', 'utf-8'):
