@@ -13,14 +13,14 @@ html {
   --section-padding: 0.25rem 1rem;
 }
 
-#behat {
+#cucumberSteps {
   background-color: var(--background);
   color: var(--foreground);
   margin: 0;
   padding: 0;
 }
 
-#behat a {
+#cucumberSteps a {
   text-decoration: none;
   color: var(--background);
 }

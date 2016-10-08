@@ -5,28 +5,27 @@ import codecs
 from os import path, walk
 from . import case_parse
 
-BEHAT_KEYWORDS = ['Given', 'When', 'Then', 'And', 'But']
-TEST_FOLDER = 'tests/acceptance/bootstrap'
-DEBUG = True
+TEST_FOLDER = 'tests/acceptance/bootstrap/'
 IGNORED_FILES = ['.DS_Store']
 
 class CucumberStepFinder():
     def __init__(self, line, root):
         self.matches = []
+        self.settings = sublime.load_settings('cucumber_steps.sublime-settings')
         self.step = self.remove_keywords(line)
         # TODO: return if line does not start with a keyword
         self.fn_name = self.prepare_fn_name(self.step)
         self.search_path = self.get_search_path(root)
         self.matches = self.find_implementation(self.fn_name, self.search_path)
 
-        if DEBUG:
+        if self.settings.get('debug'):
             print("FN_NAME: " + self.fn_name)
             print("SEARCH_PATH: " + self.search_path)
             print(self.matches)
 
     def remove_keywords(self, line):
         step = line
-        for keyword in BEHAT_KEYWORDS:
+        for keyword in self.settings.get('cucumber_keywords', []):
             if line.startswith(keyword):
                 step = line.replace(keyword, '', 1)
         return step.strip()
@@ -63,7 +62,7 @@ class CucumberStepFinder():
         return matches
 
 
-class BehatFindImplementationCommand(sublime_plugin.TextCommand):
+class CucumberFindImplementationCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         # TODO: return if not valid file
         window = self.view.window()

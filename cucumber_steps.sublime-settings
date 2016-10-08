@@ -1,0 +1,9 @@
+{
+  // list of sublime-syntaxes that we're enabling this plugin for.
+  "supported_syntaxes": [
+    "Behat-Features.tmLanguage",
+    "Cucumber Plain Text Feature.tmLanguage"
+  ],
+  "cucumber_keywords": ["Given", "When", "Then", "And", "But"],
+  "debug": true
+}
