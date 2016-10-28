@@ -43,6 +43,7 @@ class CucumberStepFinder():
     def prepare_regex_name(self, step):
         step = re.sub(r'"[^"]+"', '(.+?)', step)
         step = re.sub(r'\d+', '(.+?)', step)
+        step = re.sub(r'<[^>]+>', '(.+?)', step)
         return step
 
     def prepare_fn_name(self, step):
@@ -78,6 +79,10 @@ class CucumberStepFinder():
 
 
 class CucumberFindImplementationCommand(sublime_plugin.TextCommand):
+    def __init__(self, view):
+        self.items = []
+        self.view = view
+
     def run(self, edit):
         # TODO: return if not valid file
         window = self.view.window()
@@ -90,14 +95,15 @@ class CucumberFindImplementationCommand(sublime_plugin.TextCommand):
             window.open_file(m[0] + ':' + m[1], sublime.ENCODED_POSITION)
 
         if len(self.matches) > 1:
-            items = ([m[2] + ':' + m[1], m[3]] for m in self.matches)
-            window.show_quick_panel(list(items), self.on_file_selection)
+            items = list([m[2] + ':' + m[1], m[3]] for m in self.matches)
+            window.show_quick_panel(items, self.on_file_selection)
 
         if len(self.matches) == 0:
             window.status_message('=> Step not implemented!')
 
     def on_file_selection(self, row):
-        pass
+        m = self.matches[row]
+        self.view.window().open_file(m[0] + ':' + m[1], sublime.ENCODED_POSITION)
 
     def line_content(self):
         view = self.view
