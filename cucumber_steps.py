@@ -15,11 +15,21 @@ class CucumberStepFinder():
         self.step = self.remove_keywords(line)
         # TODO: return if line does not start with a keyword
         self.fn_name = self.prepare_fn_name(self.step)
+        self.regex_name = self.prepare_regex_name(self.step)
         self.search_path = self.get_search_path(root)
-        self.matches = self.find_implementation(self.fn_name, self.search_path)
+
+        self.matches = self.find_implementation(self.regex_name, self.search_path)
+
+        if not self.matches:
+            self.regex_name_removed_all_caps = re.sub(r'\b[A-Z]{2,}\b', '(.+?)', self.regex_name)
+            self.matches = self.find_implementation(self.regex_name_removed_all_caps, self.search_path)
+
+        if not self.matches:
+            self.matches = self.find_implementation(self.fn_name, self.search_path)
 
         if self.settings.get('debug'):
             print("FN_NAME: " + self.fn_name)
+            print("REGEX: " + self.regex_name)
             print("SEARCH_PATH: " + self.search_path)
             print(self.matches)
 
@@ -30,10 +40,15 @@ class CucumberStepFinder():
                 step = line.replace(keyword, '', 1)
         return step.strip()
 
+    def prepare_regex_name(self, step):
+        step = re.sub(r'"[^"]+"', '(.+?)', step)
+        step = re.sub(r'\d+', '(.+?)', step)
+        return step
+
     def prepare_fn_name(self, step):
         # TODO: handle <> and : and tables
         step = re.sub(r'"[^"]+"', '', step)
-        return ' ' + self.to_camel_case(step) + '('
+        return ' ' + self.to_camel_case(step)
 
     def to_camel_case(self, text):
         words, case, sep = case_parse.parseVariable(text, False, [])
@@ -57,7 +72,7 @@ class CucumberStepFinder():
                 file_path = path.join(root, f)
                 for line in codecs.open(file_path, 'r', 'utf-8'):
                     index = index + 1
-                    if re.search(re.escape(text), line):
+                    if re.search(text, line):
                         matches.append([file_path, str(index), f, line])
         return matches
 
