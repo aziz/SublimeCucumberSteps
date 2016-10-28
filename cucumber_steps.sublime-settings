@@ -5,5 +5,5 @@
     "Cucumber Plain Text Feature.tmLanguage"
   ],
   "cucumber_keywords": ["Given", "When", "Then", "And", "But"],
-  "debug": true
+  "debug": false
 }

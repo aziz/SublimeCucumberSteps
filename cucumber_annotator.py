@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sublime_plugin
 import sublime
 from . import cucumber_steps as Steps
@@ -11,6 +12,8 @@ class CucumberStepAnnotator(sublime_plugin.ViewEventListener):
     @classmethod
     def is_applicable(cls, settings):
         syntax = settings.get('syntax')
+        if not syntax:
+            return
         plugin_settings = sublime.load_settings('cucumber_steps.sublime-settings')
         supported_syntaxes = plugin_settings.get('supported_syntaxes')
         for s in supported_syntaxes:
