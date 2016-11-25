@@ -42,10 +42,13 @@ class CucumberStepFinder():
         return step.strip()
 
     def prepare_regex_name(self, step):
+        # replace "foo"
         step = re.sub(r'"[^"]+"', '(.+?)', step)
+        # replace numbers
         step = re.sub(r'\d+', '(.+?)', step)
+        # replace <foo>
         step = re.sub(r'<[^>]+>', '(.+?)', step)
-        return step
+        return re.escape('^') + step
 
     def prepare_fn_name(self, step):
         # TODO: handle <> and : and tables

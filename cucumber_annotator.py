@@ -38,10 +38,15 @@ class CucumberStepAnnotator(sublime_plugin.ViewEventListener):
             self.view.window().show_quick_panel(items, self.on_file_selection)
         else:
             self.view.window().open_file(url, sublime.ENCODED_POSITION)
+            sublime.set_timeout_async(self.post_open, 100)
 
     def on_file_selection(self, row):
         m = self.matches[row]
         self.view.window().open_file(m[0] + ':' + m[1], sublime.ENCODED_POSITION)
+        sublime.set_timeout_async(self.post_open, 100)
+
+    def post_open(self):
+        self.view.window().active_view().run_command("show_at_center")
 
     def on_selection_modified_async(self):
         view = self.view
