@@ -1,0 +1,47 @@
+Behat:
+ ☐ Search Steps... and insert step
+ ☐ Auto complete step
+ ☐ Jump to step definition
+ ☐ Show whether step is implemented or not
+ ☐ find Usage of a step
+ ☐ run a scenario
+
+--- ✄ -----------------------
+
+TODO:
+ ☐ use  folders = self.window.folders() instead of current
+ ☐ rename to behatStepfinder or find a similar approach to find regexes
+ ☐ support for Ruby and JS implentations
+
+ ☐ remove inline todo
+ ☐ handle <> and : in tables
+ ☐ keyboard shortcuts
+ ☐ context menu
+ ☐ clear on deactivated
+ ☐ customizable text for phantoms
+ ☐ being able to disable annotator
+
+ ☐ support project level settings
+ ☐ pattern file for targetting files better
+ ☐ Settings: where to search path to tests
+ ☐ disable annotator per file
+
+ ☐ finish readme readme
+
+Next Release:
+ ☐ when not found use the simple regex to search in the comments
+ ☐ create step if not implemented
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+ ✔ Investigate current plugin @done (16-10-09 13:23) @project(TODO)
+ ✘ use minihtml popup instead of phantoms @cancelled (16-10-08 15:30) @project(TODO)
+ ✔ auto complete step writing https://packagecontrol.io/packages/Cucumber%20Completion @done (16-10-08 15:24) @project(Ideas)
+ ✔ set debug from settings @done (16-10-08 15:23) @project(settings)
+ ✔ valid syntax @done (16-10-08 14:52) @project(settings)
+ ✔ list of cucumber commands @done (16-10-08 14:52) @project(settings)
+ ✔ support other syntaxes available or go with .feature @done (16-10-08 14:47) @project(TODO)
+ ✔ do not render phantoms that much @done (16-10-08 01:02) @project(TODO)
+ ✔ disable while writig features @done (16-10-08 00:42) @project(TODO)
+ ✔ disable definition on cucumber files @done (16-10-07 01:13) @project(TODO)
+ ✔ find all step implementation in a file and add phantom @done (16-10-07 00:58) @project(TODO)
