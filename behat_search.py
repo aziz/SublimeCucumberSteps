@@ -7,6 +7,7 @@ class BehatSearchCommand(sublime_plugin.WindowCommand):
     def __init__(self, window):
         self.items = []
         self.window = window
+        self.__find_step_definitions()
 
     def run(self):
         self.__find_step_definitions()
@@ -20,8 +21,8 @@ class BehatSearchCommand(sublime_plugin.WindowCommand):
             cmd = project_settings['behat_command'] + ' -dl --no-ansi'
             stdoutdata = subprocess.check_output(cmd, shell=True)
             lines = stdoutdata.decode("utf-8").split("\n")
-            items = list(map(self.__parse, lines))
-        self.items = items
+            self.items = list(map(self.__parse, lines))
+
 
     def __parse(self, line):
         step = line[7:-2]

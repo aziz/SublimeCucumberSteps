@@ -82,3 +82,12 @@ class CucumberStepAnnotator(sublime_plugin.ViewEventListener):
                 view.add_phantom("cucumber_steps", region, html.format(css=css, content=content), sublime.LAYOUT_INLINE)
         else:
             view.erase_phantoms("cucumber_steps")
+
+    def on_query_context(self, key, operator, operand, match_all):
+        if key == 'cucumber_jump_line':
+            v = self.view
+            cursor = v.sel()[0].a
+            line_range = v.line(cursor)
+            line_content = v.substr(line_range).strip()
+            return bool(self.is_valid_step(line_content))
+        return None

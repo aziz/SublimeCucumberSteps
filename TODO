@@ -1,8 +1,8 @@
 Behat:
  ✔ Search Steps... and insert step @done (17-05-13 21:05)
- ☐ Auto complete step
+ ✘ Auto complete step (Gherkin Plus) @cancelled (17-05-13 22:24)
  ☐ Jump to step definition
- ☐ Show whether step is implemented or not
+ ☐ Show whether step is implemented or not (gutter or phantom)
  ☐ find Usage of a step
  ☐ run a scenario
 
@@ -22,7 +22,7 @@ TODO:
  ☐ being able to disable annotator
 
  ☐ support project level settings
- ☐ pattern file for targetting files better
+ ☐ pattern file for targeting files better
  ☐ Settings: where to search path to tests
  ☐ disable annotator per file
 
