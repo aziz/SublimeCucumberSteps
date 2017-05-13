@@ -1,5 +1,5 @@
 Behat:
- ☐ Search Steps... and insert step
+ ✔ Search Steps... and insert step @done (17-05-13 21:05)
  ☐ Auto complete step
  ☐ Jump to step definition
  ☐ Show whether step is implemented or not

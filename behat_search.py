@@ -4,7 +4,6 @@ import sublime
 import subprocess
 
 class BehatSearchCommand(sublime_plugin.WindowCommand):
-    # TODO: on click insert the text
     def __init__(self, window):
         self.items = []
         self.window = window
@@ -35,8 +34,9 @@ class BehatSearchCommand(sublime_plugin.WindowCommand):
     def __on_file_selection(self, row):
         self.window.active_view().run_command('behat_search_insert_step', {'step': self.items[row]})
 
-    # def is_enabled(self):
-    # def is_visible(self):
+    def is_enabled(self):
+        return bool(self.window.project_data().get('behat', None))
+
 
 class BehatSearchInsertStepCommand(sublime_plugin.TextCommand):
     def run(self, edit, **args):
