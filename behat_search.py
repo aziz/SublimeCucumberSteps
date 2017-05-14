@@ -20,7 +20,7 @@
 #             step = step[1:]
 #         if step.endswith('$'):
 #             step = step[:-1]
-#         data['regex'] = line[7:-2];
+#         data['regex'] = line[6:];
 #         data['step'] = step
 #         (file_path, line_number) = self.__find(data['regex'])
 #         data['file_path'] = file_path

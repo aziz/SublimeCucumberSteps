@@ -1,6 +1,7 @@
 Behat:
  ✔ Search Steps... and insert step @done (17-05-13 21:05)
  ✘ Auto complete step (Gherkin Plus) @cancelled (17-05-13 22:24)
+ ☐ speed up process of finding implementation
  ☐ Jump to step definition
  ☐ Show whether step is implemented or not (gutter or phantom)
  ☐ find Usage of a step
